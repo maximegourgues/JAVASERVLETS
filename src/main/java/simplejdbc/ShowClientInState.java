@@ -50,7 +50,7 @@ public class ShowClientInState extends HttpServlet {
                 DAO dao = new DAO(DataSourceFactory.getDataSource());
                 List<CustomerEntity> customer = dao.customersInState(val);
                 if (customer == null) {
-                    throw new Exception("Client inconnu");
+                    throw new Exception("Client non trouvé ou Etat inconnu");
                 }
                 out.println("<table><tr><th>ID</th><th>Name</th><th>Adresse</th></tr>");
                 // Afficher les propriétés du client         
