@@ -1,3 +1,5 @@
+package simplejdbc;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -31,6 +33,9 @@ public class ShowClientInState extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<style>table, th, td {\n" +
+            "  border: 1px solid black;\n" +
+            "}</style>");
             out.println("<title>Servlet ShowClient</title>");
             out.println("</head>");
             out.println("<body>");
@@ -47,13 +52,18 @@ public class ShowClientInState extends HttpServlet {
                 if (customer == null) {
                     throw new Exception("Client inconnu");
                 }
+                out.println("<table><tr><th>ID</th><th>Name</th><th>Adresse</th></tr>");
                 // Afficher les propriétés du client         
                 for(int i=0;i<customer.size();i++){
-                out.printf("Customer n° %d <br> name: %s <br> address: %s",
+                
+                out.printf("<tr><td>%d</td><td>%s</td><td>%s</td></tr>",
+                    
                     customer.get(i).getCustomerId(),
                     customer.get(i).getName(),
                     customer.get(i).getAddressLine1());
+                
                 }
+                out.printf("</table>");
             } catch (Exception e) {
                 out.printf("Erreur : %s", e.getMessage());
             }
